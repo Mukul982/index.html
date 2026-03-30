@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mukul · developer & business mind</title>
+  <!-- Font Awesome 6 (free) for crisp icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(145deg, #f4f2ff 0%, #e9ebf9 100%);
+      color: #1c1e2e;
+      line-height: 1.5;
+    }
+
+    /* glass‑card utility (modern blur) */
+    .glass-card {
+      background: rgba(255, 255, 255, 0.55);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.6);
+      border-radius: 2.5rem;
+      box-shadow: 0 20px 40px -16px rgba(30, 20, 50, 0.15);
+    }
+
+    .container {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* ---------- navigation (only logo, no buttons) ---------- */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 2.2rem;
+      position: sticky;
+      top: 1.5rem;
+      z-index: 100;
+      margin: 1rem 2rem 2.5rem 2rem;
+      background: rgba(255, 255, 255, 0.5);
+      backdrop-filter: blur(12px);
+      border-radius: 4rem;
+      border: 1px solid rgba(255,255,255,0.7);
+      box-shadow: 0 10px 25px -10px rgba(0,0,0,0.05);
+    }
+
+    .logo {
+      font-size: 1.9rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      background: linear-gradient(130deg, #202b4e, #384e86);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .logo span {
+      -webkit-text-fill-color: #314a7a;
+      font-weight: 500;
+    }
+
+    /* nav-links div is gone – only logo remains, right side empty for balance */
+    .navbar .right-placeholder {
+      width: 2rem; /* invisible, just keeps flex spacing */
+    }
+
+    /* ---------- hero section ---------- */
+    .hero {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      margin: 2.5rem 0 5rem 0;
+      gap: 3rem;
+    }
+    .hero-content {
+      flex: 1 1 400px;
+    }
+    .hero-badge {
+      background: rgba(90, 110, 200, 0.2);
+      color: #263e77;
+      padding: 0.3rem 1.4rem;
+      border-radius: 40px;
+      display: inline-block;
+      font-weight: 550;
+      font-size: 0.95rem;
+      backdrop-filter: blur(4px);
+      margin-bottom: 1.5rem;
+      border: 1px solid rgba(90, 120, 230, 0.3);
+    }
+    .hero-content h1 {
+      font-size: 4.2rem;
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      background: linear-gradient(145deg, #141c30, #2e4172);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 1rem;
+    }
+    .hero-highlight {
+      background: linear-gradient(120deg, #dfe8ff, #c8d5ff);
+      padding: 0.1rem 0.6rem;
+      -webkit-text-fill-color: #142139;
+      border-radius: 30px;
+    }
+    .hero-desc {
+      font-size: 1.3rem;
+      color: #2f3e62;
+      max-width: 580px;
+      margin-bottom: 2rem;
+      font-weight: 390;
+    }
+    .hero-cta {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .primary-btn {
+      background: #1f325a;
+      border: none;
+      padding: 1rem 2.5rem;
+      border-radius: 4rem;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 14px 30px -10px #1f3060b3;
+      transition: 0.15s;
+      text-decoration: none;
+      display: inline-block;
+      background: linear-gradient(145deg, #233a68, #162445);
+    }
+    .primary-btn i {
+      margin-right: 0.6rem;
+    }
+    .primary-btn:hover {
+      transform: scale(1.02);
+      background: #26447a;
+    }
+    .outline-btn {
+      background: transparent;
+      border: 1.8px solid #304e82;
+      color: #1d3157;
+      padding: 0.9rem 2.2rem;
+      border-radius: 4rem;
+      font-weight: 600;
+      transition: 0.2s;
+      text-decoration: none;
+    }
+    .outline-btn:hover {
+      background: rgba(55, 80, 140, 0.06);
+    }
+
+    .hero-image {
+      flex: 0 1 300px;
+      background: rgba(210, 220, 250, 0.5);
+      border-radius: 40% 60% 40% 60% / 50% 40% 60% 50%;
+      padding: 1rem;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 35px 60px -20px #1e2f6090;
+      border: 2px solid rgba(255,255,255,0.7);
+    }
+    .avatar-placeholder {
+      background: linear-gradient(135deg, #345197, #142344);
+      border-radius: 60% 40% 50% 50% / 40% 50% 50% 60%;
+      width: 100%;
+      aspect-ratio: 1/1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 5rem;
+      font-weight: 600;
+      border: 4px solid rgba(255,255,255,0.5);
+      box-shadow: 0 0 30px #758fd9;
+    }
+
+    /* mini stats */
+    .mini-stats {
+      margin-top: 2.5rem;
+      display: flex;
+      gap: 2rem;
+      font-size: 1.05rem;
+      color: #2c3a60;
+    }
+    .mini-stats i {
+      color: #3861b5;
+      margin-right: 5px;
+    }
+
+    /* stats ribbon (glass) */
+    .stats {
+      display: flex;
+      gap: 2.5rem;
+      margin: 3rem 0 5rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .stat-item {
+      background: white;
+      padding: 1.5rem 2.2rem;
+      border-radius: 3rem;
+      background: rgba(255,255,255,0.45);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.8);
+      min-width: 140px;
+      text-align: center;
+      font-weight: 600;
+    }
+    .stat-number {
+      font-size: 2.5rem;
+      display: block;
+      font-weight: 700;
+      background: linear-gradient(135deg, #182242, #2a4280);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* section heading */
+    .section-title {
+      font-size: 2.8rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 2.2rem;
+      background: linear-gradient(145deg, #171e30, #253a66);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .section-title i {
+      background: rgba(80, 120, 210, 0.2);
+      padding: 0.7rem;
+      border-radius: 50%;
+      font-size: 1.8rem;
+      color: #2f4a8a;
+    }
+
+    /* skills cloud */
+    .skills-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem 1.2rem;
+      margin: 2rem 0 4rem;
+    }
+    .skill-chip {
+      background: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(4px);
+      padding: 0.8rem 2rem;
+      border-radius: 4rem;
+      font-size: 1.2rem;
+      font-weight: 500;
+      border: 1px solid white;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+      transition: 0.15s;
+    }
+    .skill-chip:hover {
+      background: white;
+      box-shadow: 0 12px 24px -10px #2a3e8c60;
+      border-color: #b1c3ff;
+    }
+    .skill-chip i {
+      margin-right: 8px;
+      color: #24438c;
+    }
+
+    /* business minded + creative badge extended */
+    .business-minded-row {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.5rem 3rem;
+      background: rgba(255,255,255,0.3);
+      backdrop-filter: blur(8px);
+      border-radius: 5rem;
+      padding: 0.9rem 2.5rem;
+      margin: 2.2rem 0 2.5rem;
+      border: 1px solid rgba(255,255,255,0.7);
+    }
+    .business-tag {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.2rem;
+      color: #20315a;
+    }
+    .business-tag i {
+      font-size: 1.7rem;
+      background: #ffffffb3;
+      padding: 0.4rem;
+      border-radius: 50%;
+      color: #3b509a;
+    }
+
+    /* projects grid (glass) */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+      margin: 3rem 0 5rem;
+    }
+    .project-card {
+      background: rgba(255, 255, 255, 0.5);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.7);
+      border-radius: 2.5rem;
+      padding: 1.8rem 1.8rem 2rem 1.8rem;
+      transition: 0.2s;
+    }
+    .project-card:hover {
+      background: rgba(255,255,255,0.75);
+      transform: translateY(-5px);
+      box-shadow: 0 25px 40px -18px #25366b60;
+    }
+    .project-icon {
+      font-size: 2.3rem;
+      background: #ecf0ff;
+      width: 4rem;
+      height: 4rem;
+      border-radius: 1.8rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+      color: #263f83;
+    }
+    .project-card h3 {
+      font-size: 1.7rem;
+      font-weight: 620;
+      margin-bottom: 0.5rem;
+    }
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 1rem 0 1.4rem;
+    }
+    .project-tags span {
+      background: rgba(40, 70, 140, 0.1);
+      padding: 0.2rem 1rem;
+      border-radius: 30px;
+      font-size: 0.9rem;
+      font-weight: 520;
+    }
+    .project-link {
+      text-decoration: none;
+      font-weight: 620;
+      color: #264494;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    /* contact area (double glass) */
+    .contact-section {
+      background: rgba(255,255,255,0.35);
+      backdrop-filter: blur(12px);
+      border-radius: 4rem;
+      padding: 3rem 3rem;
+      margin: 4rem 0 3rem;
+      border: 1px solid rgba(255,255,255,0.8);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .contact-left h2 {
+      font-size: 2.4rem;
+      font-weight: 680;
+      background: linear-gradient(145deg, #1e2740, #2f4580);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .contact-left p {
+      font-size: 1.2rem;
+      color: #25355a;
+      max-width: 400px;
+    }
+    .contact-email {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      background: white;
+      padding: 0.8rem 2rem 0.8rem 1.5rem;
+      border-radius: 4rem;
+      font-size: 1.25rem;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+      border: 1px solid #fff;
+    }
+    .contact-email i {
+      color: #3e5eb0;
+      font-size: 1.6rem;
+    }
+    .social-links {
+      display: flex;
+      gap: 1.8rem;
+      font-size: 2rem;
+      margin-top: 1.2rem;
+    }
+    .social-links a {
+      color: #2d4380;
+      transition: 0.1s;
+    }
+    .social-links a:hover {
+      color: #111f44;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem 0 3rem;
+      color: #374e81;
+      font-weight: 400;
+    }
+
+    hr {
+      border: none;
+      height: 1px;
+      background: linear-gradient(to right, transparent, rgba(90,120,200,0.2), transparent);
+      margin: 2rem 0;
+    }
+
+    @media (max-width: 700px) {
+      .navbar { flex-direction: column; gap: 1rem; }
+      .hero-content h1 { font-size: 3rem; }
+      .contact-section { flex-direction: column; text-align: center; gap: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- navigation: ONLY LOGO, no Work/Projects/Resume/Connect buttons -->
+  <nav class="navbar">
+    <div class="logo">MUKUL <span>✦</span> INDIA</div>
+    <div class="right-placeholder"></div> <!-- keeps flex space, no buttons -->
+  </nav>
+
+  <main class="container">
+    <!-- HERO section – name, business minded, creative, email preview -->
+    <div class="hero">
+      <div class="hero-content">
+        <span class="hero-badge"><i class="fas fa-map-pin"></i> INDIA · website developer</span>
+        <h1>Mukul <br><span class="hero-highlight">creative & business</span> minded</h1>
+        <p class="hero-desc">
+          I like coding, I think in products. HTML • C# • C++ • Java • Python — 
+          I craft digital experiences with a sharp eye for elegance.
+        </p>
+        <div class="hero-cta">
+          <a href="#" class="primary-btn"><i class="fas fa-paper-plane"></i> mukul@work</a>
+          <a href="#" class="outline-btn"><i class="fas fa-file-code"></i> projects</a>
+        </div>
+        <!-- inline mini stats / personal -->
+        <div class="mini-stats">
+          <span><i class="fas fa-brain"></i> creative thinker</span>
+          <span><i class="fas fa-chart-line"></i> business minded</span>
+          <span><i class="fas fa-code"></i> full‑stack</span>
+        </div>
+      </div>
+      <div class="hero-image">
+        <div class="avatar-placeholder">
+          M
+        </div>
+      </div>
+    </div>
+
+    <!-- stats ribbon (playful) -->
+    <div class="stats">
+      <div class="stat-item"><span class="stat-number">5+</span> languages</div>
+      <div class="stat-item"><span class="stat-number">C#</span> · C++ · Java</div>
+      <div class="stat-item"><span class="stat-number">Python</span> & HTML</div>
+    </div>
+
+    <!-- Programming languages & business minded row (colourful) -->
+    <div class="section-title"><i class="fas fa-code"></i> stack & mindset</div>
+    <div class="skills-cloud">
+      <span class="skill-chip"><i class="fab fa-html5"></i> HTML</span>
+      <span class="skill-chip"><i class="fas fa-code"></i> C#</span>
+      <span class="skill-chip"><i class="fas fa-code"></i> C++</span>
+      <span class="skill-chip"><i class="fab fa-java"></i> Java</span>
+      <span class="skill-chip"><i class="fab fa-python"></i> Python</span>
+      <span class="skill-chip"><i class="fas fa-globe"></i> website dev</span>
+      <span class="skill-chip"><i class="fas fa-lightbulb"></i> creative</span>
+      <span class="skill-chip"><i class="fas fa-briefcase"></i> business</span>
+    </div>
+
+    <!-- business minded + creative badge (extra elegant) with email inside -->
+    <div class="business-minded-row">
+      <span class="business-tag"><i class="fas fa-crown"></i> business minded · product aware</span>
+      <span class="business-tag"><i class="fas fa-paint-brush"></i> creative thinker</span>
+      <span class="business-tag"><i class="fas fa-at"></i> m009099190@gmail.com</span>
+    </div>
+
+    <!-- project section: just to show flavour (can be replaced) -->
+    <div class="section-title"><i class="fas fa-laptop-code"></i> craft snippets</div>
+    <div class="projects-grid">
+      <div class="project-card">
+        <div class="project-icon"><i class="fas fa-cart-shopping"></i></div>
+        <h3>UrbanDash</h3>
+        <p>business-minded e‑commerce · secure & fast</p>
+        <div class="project-tags"><span>HTML</span><span>C#</span><span>SQL</span></div>
+        <a href="#" class="project-link">case study <i class="fas fa-arrow-right"></i></a>
+      </div>
+      <div class="project-card">
+        <div class="project-icon"><i class="fas fa-robot"></i></div>
+        <h3>CodeHelper AI</h3>
+        <p>creative problem solving · Python + LLM</p>
+        <div class="project-tags"><span>Python</span><span>Flask</span></div>
+        <a href="#" class="project-link">explore <i class="fas fa-arrow-right"></i></a>
+      </div>
+      <div class="project-card">
+        <div class="project-icon"><i class="fas fa-chart-pie"></i></div>
+        <h3>BizOptima</h3>
+        <p>analytics for small business (C++ backend)</p>
+        <div class="project-tags"><span>C++</span><span>Qt</span></div>
+        <a href="#" class="project-link">preview <i class="fas fa-arrow-right"></i></a>
+      </div>
+      <div class="project-card">
+        <div class="project-icon"><i class="fas fa-palette"></i></div>
+        <h3>portfolio 2025</h3>
+        <p>website dev · elegant glassmorphism</p>
+        <div class="project-tags"><span>HTML</span><span>CSS</span><span>JS</span></div>
+        <a href="#" class="project-link">live <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </div>
+
+    <!-- CONTACT & EMAIL (exactly your email) -->
+    <div class="contact-section">
+      <div class="contact-left">
+        <h2>let's build · let's connect</h2>
+        <p>Mukul — based in India, coding with purpose. Your next idea deserves a creative & business minded developer.</p>
+        <div class="social-links">
+          <a href="#"><i class="fab fa-github"></i></a>
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#"><i class="fab fa-x-twitter"></i></a>
+          <a href="#"><i class="fas fa-envelope"></i></a>
+        </div>
+      </div>
+      <div class="contact-email">
+        <i class="fas fa-envelope"></i> m009099190@gmail.com
+      </div>
+    </div>
+
+    <hr>
+
+    <footer>
+      <p>© 2025 Mukul · website developer · INDIA · all code & creativity</p>
+      <p style="margin-top: 0.7rem; font-size: 0.9rem; opacity: 0.8;"><i class="fas fa-mug-hot"></i>  HTML · C# · C++ · Java · Python  <i class="fas fa-heart" style="color:#b22;"></i></p>
+    </footer>
+  </main>
+</body>
+</html>
